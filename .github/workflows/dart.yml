@@ -36,6 +36,14 @@ jobs:
     
     # Get flutter dependencies.
     - run: flutter pub get
+
+    - name: Install Fastlane
+      run: |
+          gem install bundler
+          bundle install
+
+    - name: Execute Fastlane
+      run: bundle exec fastlane build_and_test
     
     # Check for any formatting issues in the code.
     # - run: flutter format --set-exit-if-changed .
