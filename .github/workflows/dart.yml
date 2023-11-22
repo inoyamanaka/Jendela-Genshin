@@ -22,10 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    - name: Set up Ruby 3.2.3
+    - name: Set up Ruby 3.2
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.2.3
+        ruby-version: 3.2
 
     - name: Fastlane Action
       uses: maierj/fastlane-action@v3.0.0
