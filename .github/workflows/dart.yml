@@ -35,8 +35,16 @@ jobs:
       - name: Analyze project source
         run: dart analyze
 
+      - name: Install Fastlane
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Execute Fastlane
+        run: bundle exec fastlane build_and_test
+      
+       
+
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
       # want to change this to 'flutter test'.
-      - name: Run tests
-        run: dart test
