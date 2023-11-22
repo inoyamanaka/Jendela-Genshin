@@ -27,10 +27,16 @@ jobs:
       with:
         ruby-version: 3.2
 
-    - name: Fastlane Action
-      uses: maierj/fastlane-action@v3.0.0
-      with:
-          lane: 'beta'
+    - name: Install bundler & Fastlane
+      run: |
+        gem install bundler:2.2.27
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+
+    # - name: Fastlane Action
+    #   uses: maierj/fastlane-action@v3.0.0
+    #   with:
+    #       lane: 'beta'
             
     # Setup Java environment in order to build the Android app.
     - uses: actions/checkout@v1
