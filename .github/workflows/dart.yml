@@ -38,6 +38,7 @@ jobs:
     - name: Install bundle
       run: |
           bundle install
+          bundle init
 
     - name: Create Firebase Service Credentials file
       run: |
