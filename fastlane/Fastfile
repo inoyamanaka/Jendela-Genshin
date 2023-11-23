@@ -2,22 +2,19 @@
 desc "Deploy Production-Release APK file in Internal track to PlayStore" # Lane description
 lane :deploy_development_release do |options|
    flutter_build
-  #  gradle(
-  #           task: "assemble", # assemble for release apk, assemble
-  #           flavor: "development", # Flavor Name
-  #           build_type: "Release",
-            # project_dir: "D:/flutter/genshin_app/android",
-  #           flags: "-Ptarget=lib/main_development.dart",
-  #           properties: {
-  #               "android.injected.signing.store.file" => "D:/flutter/genshin_app/android/keystore.jks",
-  #               "android.injected.signing.store.password" => "lambang123",
-  #               "android.injected.signing.key.alias" => "upload",
-  #               "android.injected.signing.key.password" => "lambang123",
-  #           }
-  # )
-  gradle(task: "assemble", 
+   gradle(
+            task: "assemble", # assemble for release apk, assemble
+            flavor: "development", # Flavor Name
+            build_type: "Release",
             project_dir: "android/",
-            )
+            flags: "-Ptarget=lib/main_development.dart",
+            properties: {
+                "android.injected.signing.store.file" => "D:/flutter/genshin_app/android/keystore.jks",
+                "android.injected.signing.store.password" => "lambang123",
+                "android.injected.signing.key.alias" => "upload",
+                "android.injected.signing.key.password" => "lambang123",
+            }
+  )
   # supply(
   #     skip_upload_images: 'true',
   #     skip_upload_screenshots: 'true',
