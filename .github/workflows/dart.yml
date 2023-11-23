@@ -52,6 +52,10 @@ jobs:
     - name: Give permission
       run: chmod +x /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew
 
+    # Gredle init
+    - name: Run gradle init
+      run: gradlew init
+
     # Run Tests Build
     - name: Run gradle tests
       run: /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew test
