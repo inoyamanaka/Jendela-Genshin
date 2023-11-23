@@ -64,6 +64,9 @@ jobs:
       env:
           PRIVATE_SERVICE_ACCOUNT_KEY: ${{ secrets.PRIVATE_SERVICE_ACCOUNT_KEY }}
 
+    - name: Install Firebase app distribution plugin
+      run: fastlane add_plugin firebase_app_distribution
+
     - name: Distribute app with 🔥 App Distribution 🚀
       run: fastlane deploy_development_release
           
