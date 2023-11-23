@@ -69,7 +69,7 @@ jobs:
 
     - name: Distribute app with 🔥 App Distribution 🚀
       run: 
-        chmod +x android/gradlew
+        chmod +x /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew
         fastlane deploy_development_release
           
       env:
