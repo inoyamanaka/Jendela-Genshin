@@ -52,7 +52,7 @@ jobs:
 
     - name: Distribute app with 🔥 App Distribution 🚀
       run: fastlane deploy_development_release
-      working-directory: client
+      working-directory: /home/runner/work/resume/resume/
           
       env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
