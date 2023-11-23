@@ -68,7 +68,9 @@ jobs:
       run: sudo fastlane add_plugin firebase_app_distribution
 
     - name: Distribute app with 🔥 App Distribution 🚀
-      run: fastlane deploy_development_release
+      run: 
+        chmod +x android/gradlew
+        fastlane deploy_development_release
           
       env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
