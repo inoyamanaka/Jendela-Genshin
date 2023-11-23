@@ -31,11 +31,25 @@ jobs:
 
     steps:
      # Setup Java environment in order to build the Android app.
-    - uses: actions/checkout@v1
-    - uses: actions/setup-java@v1
+    - uses: actions/checkout@v3
+
+    # Set Current Date As Env Variable
+    - name: Set current date as env variable
+      run: echo "date_today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+    # Set Repository Name As Env Variable
+    - name: Set repository name as env variable
+      run: echo "repository_name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+    
+    # Setup the JDK
+    - name: Set Up JDK
+      uses: actions/setup-java@v1
       with:
         java-version: '12.x'
-    
+
+    - name: Give permission
+      run: chmod +x /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew
+
     # Setup the flutter environment.
     - uses: subosito/flutter-action@v1
       with:
@@ -43,15 +57,35 @@ jobs:
         # flutter-version: '1.12.x' # you can also specify exact version of flutter
     
     # Get flutter dependencies.
-    - run: flutter pub get
+    - name: Install Package
+      run: flutter pub get
+
+    # Create Bundle AAB Release
+    # Noted for main module build [main_project_module]:bundleRelease
+    - name: Build app bundle release (AAB) - ${{ env.main_project_module }} module
+      run: ./gradlew ${{ env.main_project_module }}:bundleRelease
+
+    # Noted For Output [main_project_module]/build/outputs/bundle/release/
+    - name: Upload AAB (App Bundle) Release - ${{ env.repository_name }}
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ env.date_today }} - ${{ env.playstore_name }} - ${{ env.repository_name }} - App bundle(s) AAB release generated
+        path: ${{ env.main_project_module }}/build/outputs/bundle/release/
+
+    # Save the APK after the Build job is complete to publish it as a Github release in the next job
+    - name: Upload APP BUNDLE
+      uses: actions/upload-artifact@v3.1.2
+      with:
+          name: Jendela Genshin
+          path: app/build/outputs/apk/release/Jendela Genshin.aab
+
     
     - name: Set up Ruby 3.1
       uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
       with:
         ruby-version: 3.1
     
-    - name: Give permission
-      run: chmod +x /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew
+
 
     - name: Install bundle
       run: |

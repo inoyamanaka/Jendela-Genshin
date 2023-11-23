@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   bloc: ^8.1.2
+  cached_network_image: ^3.3.0
   contained_tab_bar_view: ^0.8.0
   dartz: ^0.10.1
   dio: ^5.3.3
@@ -40,7 +41,6 @@ flutter_native_splash:
   color: "#ffffff"
   image: assets/images/Genshin_Impact_logo.png
   color_dark: "#121212"
-
 
 flutter:
   uses-material-design: true
