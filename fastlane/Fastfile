@@ -16,7 +16,7 @@ lane :deploy_development_release do |options|
   #           }
   # )
   gradle(task: "clean assembleRelease", 
-            project_dir: "/home/runner/work/Jendela-Genshin/Jendela-Genshin/android",
+            project_dir: "android/",
             )
   # supply(
   #     skip_upload_images: 'true',
