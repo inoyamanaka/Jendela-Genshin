@@ -33,12 +33,12 @@ jobs:
     - name: Set up Ruby 3.2
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.2'
+        ruby-version: 3.2
 
     - name: Install bundle
       run: |
-          gem bundle config path vendor/bundle
-          gem install bundler
+          bundle config path vendor/bundle
+          bundle install
 
     - name: Create Firebase Service Credentials file
       run: |
