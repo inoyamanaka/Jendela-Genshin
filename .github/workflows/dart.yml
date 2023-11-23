@@ -52,11 +52,11 @@ jobs:
 
     # Run Tests Build
     - name: Run gradle tests
-      run: ./gradlew test
+      run: /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew test
 
     # Run Build Project
     - name: Build gradle project
-      run: ./gradlew build
+      run: /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew build
 
     # Setup the flutter environment.
     - uses: subosito/flutter-action@v1
@@ -93,7 +93,6 @@ jobs:
       with:
         ruby-version: 3.1
     
-
 
     - name: Install bundle
       run: |
