@@ -35,6 +35,9 @@ jobs:
     - uses: actions/setup-java@v1
       with:
         java-version: '12.x'
+        
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
     
     # Setup the flutter environment.
     - uses: subosito/flutter-action@v1
@@ -69,7 +72,6 @@ jobs:
 
     - name: Distribute app with 🔥 App Distribution 🚀
       run: 
-        chmod +x /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew
         fastlane deploy_development_release
           
       env:
