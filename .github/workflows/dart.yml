@@ -51,7 +51,8 @@ jobs:
           PRIVATE_SERVICE_ACCOUNT_KEY: ${{ secrets.PRIVATE_SERVICE_ACCOUNT_KEY }}
 
     - name: Distribute app with 🔥 App Distribution 🚀
-      run: fastlane deploy_development_release
+      run: cd $GITHUB_WORKSPACE
+           fastlane deploy_development_release
       env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
 
