@@ -40,6 +40,9 @@ jobs:
       run: |
           bundle init
           bundle install
+          bundle update
+          sudo gem install fastlane
+          fastlane init
 
     - name: Create Firebase Service Credentials file
       run: |
