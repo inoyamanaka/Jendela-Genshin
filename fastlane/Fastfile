@@ -15,7 +15,7 @@ lane :deploy_development_release do |options|
   #               "android.injected.signing.key.password" => "lambang123",
   #           }
   # )
-  gradle(task: "clean assembleRelease", 
+  gradle(task: "assemble", 
             project_dir: "android/",
             )
   # supply(
