@@ -41,7 +41,7 @@ jobs:
           bundle init
           bundle install
           bundle update
-          fastlane init
+          
 
     - name: Create Firebase Service Credentials file
       run: |
