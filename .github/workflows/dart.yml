@@ -58,9 +58,11 @@ jobs:
 
     # Run Tests Build
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
-      with:  
-            arguments: build
+      uses: gradle/gradle-build-action@v2
+
+    - name: Execute Gradle build
+      run: ./gradlew build
+
 
     # # Run Build Project
     # - name: Build gradle project
