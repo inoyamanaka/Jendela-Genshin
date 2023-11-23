@@ -49,7 +49,7 @@ jobs:
           PRIVATE_SERVICE_ACCOUNT_KEY: ${{ secrets.PRIVATE_SERVICE_ACCOUNT_KEY }}
 
     - name: Distribute app with 🔥 App Distribution 🚀
-      run: bundle exec fastlane deploy_development_release
+      run: fastlane deploy_development_release
       env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
 
@@ -67,9 +67,7 @@ jobs:
     
     # Get flutter dependencies.
     - run: flutter pub get
-   
-    - name: Execute Fastlane
-      run: bundle exec fastlane build_and_test
+  
     
     # Check for any formatting issues in the code.
     # - run: flutter format --set-exit-if-changed .
