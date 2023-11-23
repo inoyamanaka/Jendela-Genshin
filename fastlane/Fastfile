@@ -1,0 +1,35 @@
+# Lane to Deploy Production-Release Bundle file in Internal track
+desc "Deploy Production-Release APK file in Internal track to PlayStore" # Lane description
+lane :deploy_development_release do |options|
+   flutter_build
+   gradle(
+            task: "assemble", # assemble for release apk, assemble
+            flavor: "development", # Flavor Name
+            build_type: "Release",
+            project_dir: "D:/flutter/genshin_app/android",
+            flags: "-Ptarget=lib/main_development.dart",
+            properties: {
+                "android.injected.signing.store.file" => "D:/flutter/genshin_app/android/keystore.jks",
+                "android.injected.signing.store.password" => "lambang123",
+                "android.injected.signing.key.alias" => "upload",
+                "android.injected.signing.key.password" => "lambang123",
+            }
+  )
+  supply(
+      skip_upload_images: 'true',
+      skip_upload_screenshots: 'true',
+      track:'internal', 
+      package_name: 'com.deploy.verygoodcore.genshin_app.dev',
+      aab_paths: ["D:/flutter/genshin_app/build/app/outputs/bundle/developmentRelease/app-development-release.aab"]
+  )
+  # firebase_app_distribution(
+  #   app: "1:643923406936:android:d1fc15e67f4c584f599a2d",
+  #   firebase_cli_token: "1//0gZ-NxQE63hqKCgYIARAAGBASNwF-L9Ir23xAG_y1QprjRwWQOD-SlzCy-JUgN9uwXJlL0rb-MYZxZIfmv1c3xBZ_9pMMdvi9ZOw",
+  #   android_artifact_type: "APK",
+  #   release_notes: "RELEASE-NOTE",
+  #   android_artifact_path: "build/app/outputs/flutter-apk/app-development-release.apk",
+  #   groups: "genshinns-tester"
+  # )
+  end
+
+#   D:\flutter\genshin_app\build\app\outputs\bundle\developmentRelease\app-development-release.aab

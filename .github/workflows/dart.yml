@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Face Shape Classification
+name: Jendela Genshin
 
 # This workflow is triggered on pushes to the repository.
 
@@ -20,6 +20,15 @@ jobs:
   build:
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
+    env:
+      FIREBASE_CLI_TOKEN: ${{secrets.FIREBASE_CLI_TOKEN}}
+      FIREBASE_APP_ID: ${{secrets.FIREBASE_APP_ID}}
+
+      ANDROID_KEY_ALIAS: ${{secrets.ANDROID_KEY_ALIAS}}
+      ANDROID_KEY_PASSWORD: ${{secrets.ANDROID_KEY_PASSWORD}}
+      ANDROID_STORE_PASSWORD: ${{secrets.ANDROID_STORE_PASSWORD}}
+      ANDROID_SIGNING_KEY: ${{secrets.ANDROID_SIGNING_KEY}}
+
     steps:
     
     - name: Set up Ruby 3.2
@@ -32,6 +41,9 @@ jobs:
         gem install bundler:2.2.27
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
+
+    - name: Install Firebase app distribution plugin
+      run: fastlane add_plugin firebase_app_distribution
 
     # - name: Fastlane Action
     #   uses: maierj/fastlane-action@v3.0.0
@@ -52,12 +64,6 @@ jobs:
     
     # Get flutter dependencies.
     - run: flutter pub get
-
-    - name: Install bundler & Fastlane
-      run: |
-        gem install bundler:2.2.27
-        bundle config path vendor/bundle
-        bundle install --jobs 4 --retry 3
    
     - name: Execute Fastlane
       run: bundle exec fastlane build_and_test

@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "genshin-405904",
+  "private_key_id": "17db2ba0beabc43896792758a7e2cc49d370a4f8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDe2K5AR98oU1Yp\nLC/cCztq8gtJxp5fu4YXenfAKO7wshzhXHUTSLnbbDu9k/Fnf6LpFsU1qmVemZVH\nXzpzjnLJnP6qQSAq7ILCLFlzFK0O32sEk6jBE2ZYbLzhvbXmDWlCzgwH3KApOFj2\n3wRr6ZDP4d3VQc0bzTqQGQSaRq5U6nlm3b0hxk5Pb5BeMyqwwtI/IB0rFhXdyI9k\nuIdyV5nadHTWJTpLu6qnLM4SO+1k51oq77KKulT0tue4HH9DB+GhxygLXJdLy3gx\nVRi/6O9qsP1DSXQvDHh9n0eGsEBOdexnLDh3CTlzLxTxkx2A5C/XTDlOmqB4muK5\nOf7oJuSxAgMBAAECggEAFBTpqwBEY2a9z8sGwGkWCylRtsMaeDJhaec5jbcCmpfV\nE21DXaAC+PuJbKg9gQqsUcihWpiG4bNXE6NIv1YZu60VTp68zobEB8nQVmxeu1rg\nfX1C9Vc8CgGOieHl15vjcvI3fP6MQ6VWGwp2ObVGvVJeLRQXbtxxMmrBZ+0GU798\nZpowZ6Q1ChM1C54RdqpUjBLSHoFrls5kgjOmBtgV2Bpy/72Kl2wheVrtpu72TcOL\nxC9wudiCggKZVFEVcUPjn5Lhx+orQ6hXRVbbtPEKw5AtOHK2HPcfPEOspbkFJ1Y7\n4CC6MG8GNRphb85o5nOKUNXvQmdBI/nkRVzRV++bawKBgQD56Q1L10uRjPsExuHY\nFxoPI8KrvBTT0SNmqdhQ1dryNo+/SyZ35VWRUHf15GLDsE6PsoPU1iZG6oOkLylI\n+EM6Y3WU/B/xh6v+7X9dy3JMYbr7jvTPzEZ7wJKQ4PxOasbs2YFu8z2a95KQCJPl\nYRh+zVWQ/dTVEhQ4ApA3U7n8uwKBgQDkRs2S+L5uJRSih3vfFbop+TLpT1pJ4M7F\n4zfDqaNMOHH49gCshppsWyHN0WQ3iaznD+j5+hUMHgUG2lSdrl9TzVd9ihHoKNXH\nm1jJscGPd20TYnN+y9161vmdoEb7sScyiurY9C13/+rAY3dNlkP5nUZJ+lS42GAe\n5OG1vvcjgwKBgQDwUepVWi3zQ61IBLC9ikmm8W6Mkws8PctbOE0qPtyTO2C0ReIy\nPbkxSj5xmTRYljyV9sbLbzvTykTZJ/j9kK+lgGtb37AgJaWCOoTWf4Pka77RlcFZ\n6kiFTMQkyhYWmpu8u9S6CvLdCOJJ29XNKLfTiEWWbmGym/YRfnWMntklbQKBgA+D\nmFkSuq51qq9ZEdwZd+t+Wi1tDS/ULXlZdeLAVq7Jb0WCQo13IGuYzfVU88CqhKu3\ncxf6HRATwjezAuksfqINZJLNnWXv0IeeUSxz/jmn3ivhFwRZCpZcod5KlEhqw8U1\nl7xi6+wp4mRs3iDRw5DlVW+VqchePDodSBG4BsfNAoGBAMDOKBZdNlRZP1l0KGfd\nJsWqqTqPED92xAEREvs5kr9KYohhb9mSStq55pTF6Ik2BmCkMkOpoFAms8dYkMCv\nbUaItGkDCi3XbOVJpVX0m8Oof0KLlCW/TkYRU/ev7RJsxN7U5y1TS+upwL3pHOkv\nl5WenLBRK++iqkyWxPjuR/gn\n-----END PRIVATE KEY-----\n",
+  "client_email": "genshin-supply@genshin-405904.iam.gserviceaccount.com",
+  "client_id": "103116052512227202386",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/genshin-supply%40genshin-405904.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
