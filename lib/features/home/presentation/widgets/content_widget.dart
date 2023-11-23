@@ -33,7 +33,7 @@ class ContentWidget extends StatelessWidget {
                   clipBehavior: Clip.hardEdge,
                   child: Stack(
                     children: [
-                      Image.network(
+                      Image.asset(
                         image,
                         color: Colors.black45,
                         colorBlendMode: BlendMode.darken,

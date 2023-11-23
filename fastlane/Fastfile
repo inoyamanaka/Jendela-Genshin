@@ -31,5 +31,3 @@ lane :deploy_development_release do |options|
     groups: "genshinns-tester"
   )
   end
-
-#   D:\flutter\genshin_app\build\app\outputs\bundle\developmentRelease\app-development-release.aab

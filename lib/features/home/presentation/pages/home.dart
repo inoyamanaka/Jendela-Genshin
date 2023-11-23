@@ -56,8 +56,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 30),
                 ContentWidget(
                   title: 'News',
-                  image:
-                      'https://w0.peakpx.com/wallpaper/238/809/HD-wallpaper-video-game-genshin-impact-mona-genshin-impact.jpg',
+                  image: 'assets/images/news_image.jpg',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -70,8 +69,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 10),
                 ContentWidget(
                   title: 'Characters',
-                  image:
-                      'https://c4.wallpaperflare.com/wallpaper/881/436/870/genshin-impact-genshin-hd-wallpaper-preview.jpg',
+                  image: 'assets/images/character_image.jpg',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -84,8 +82,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 10),
                 ContentWidget(
                   title: 'Nations',
-                  image:
-                      'https://playerassist.com/wp-content/uploads/2022/08/sumeru-003-706x397.jpg',
+                  image: 'assets/images/nation_image.jpg',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -98,8 +95,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 10),
                 ContentWidget(
                   title: 'Weapons',
-                  image:
-                      'https://w0.peakpx.com/wallpaper/238/809/HD-wallpaper-video-game-genshin-impact-mona-genshin-impact.jpg',
+                  image: 'assets/images/nation_image.jpg',
                   onTap: () {
                     Navigator.push(
                       context,

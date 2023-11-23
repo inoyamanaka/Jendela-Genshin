@@ -16,6 +16,7 @@ class CharacterPage extends StatefulWidget {
 
 class _CharacterPageState extends State<CharacterPage> {
   final characterBloc = sl<CharacterBloc>();
+  ValueNotifier<int> indexTab = ValueNotifier<int>(0);
 
   @override
   void initState() {
@@ -37,11 +38,14 @@ class _CharacterPageState extends State<CharacterPage> {
             if (state is CharacterSuccess) {
               return Column(
                 children: [
-                  Container(
-                    height: 200,
-                    color: Colors.grey,
-                    child: Image.network(
-                      'https://static.wikia.nocookie.net/gensin-impact/images/b/b9/Mondstadt.png/revision/latest?cb=20230818202148',
+                  ValueListenableBuilder(
+                    valueListenable: indexTab,
+                    builder: (context, value, child) => Container(
+                      height: 200,
+                      color: Colors.grey,
+                      child: Image.asset(
+                        'assets/images/city_${value + 1}.png',
+                      ),
                     ),
                   ),
                   Expanded(
@@ -113,7 +117,9 @@ class _CharacterPageState extends State<CharacterPage> {
                         Container(color: Colors.blue),
                         Container(color: Colors.yellow),
                       ],
-                      onChange: print,
+                      onChange: (p0) {
+                        indexTab.value = p0;
+                      },
                     ),
                   ),
                 ],
