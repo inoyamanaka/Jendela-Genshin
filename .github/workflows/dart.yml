@@ -38,6 +38,7 @@ jobs:
 
     - name: Install bundle
       run: |
+          bundle config path vendor/bundle
           bundle init
           bundle install
           bundle update
