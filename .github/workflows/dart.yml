@@ -37,7 +37,8 @@ jobs:
         java-version: '12.x'
         
     - name: Make gradlew executable
-      run: chmod +x ./gradlew
+      run: |
+        chmod 777 -R ./bin
     
     # Setup the flutter environment.
     - uses: subosito/flutter-action@v1
