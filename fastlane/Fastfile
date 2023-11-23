@@ -6,7 +6,7 @@ lane :deploy_development_release do |options|
   #           task: "assemble", # assemble for release apk, assemble
   #           flavor: "development", # Flavor Name
   #           build_type: "Release",
-  #           project_dir: "D:/flutter/genshin_app/android",
+            # project_dir: "D:/flutter/genshin_app/android",
   #           flags: "-Ptarget=lib/main_development.dart",
   #           properties: {
   #               "android.injected.signing.store.file" => "D:/flutter/genshin_app/android/keystore.jks",
@@ -15,7 +15,9 @@ lane :deploy_development_release do |options|
   #               "android.injected.signing.key.password" => "lambang123",
   #           }
   # )
-  gradle(task: "clean assembleRelease")
+  gradle(task: "clean assembleRelease", 
+            project_dir: "/home/runner/work/Jendela-Genshin/Jendela-Genshin/android",
+            )
   # supply(
   #     skip_upload_images: 'true',
   #     skip_upload_screenshots: 'true',
