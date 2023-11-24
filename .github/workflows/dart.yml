@@ -52,18 +52,6 @@ jobs:
     - name: Give permission
       run: chmod +x /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew
 
-    # # Gredle init
-    # - name: Run gradle init
-    #   run: gradlew init
-
-    # Run Tests Build
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@v2
-
-    - name: Execute Gradle build
-      run: /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew build
-
-
     # # Run Build Project
     # - name: Build gradle project
     #   run: /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew build
@@ -77,6 +65,9 @@ jobs:
     # Get flutter dependencies.
     - name: Install Package
       run: flutter pub get
+
+    - name: Build release app bundle
+      run: flutter build appbundle
 
     # Create Bundle AAB Release
     # Noted for main module build [main_project_module]:bundleRelease
