@@ -110,13 +110,24 @@ jobs:
     - name: Install Firebase app distribution plugin
       run: sudo fastlane add_plugin firebase_app_distribution
 
-    - name: Distribute app with 🔥 App Distribution 🚀
-      run: 
 
-        fastlane deploy_development_release
-          
+    - name: Decode Keystore File
+      uses: timheuer/base64-to-file@v1
+      id: android_keystore
+      with:
+        fileName: "android_keystore.keystore"
+        encodedString: ${{ secrets.ANDROID_SIGNING_KEY }}
+
+    - name: Distribute app with 🔥 App Distribution 🚀
+      run: bundle exec fastlane deploy
       env:
-          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+        FIREBASE_CLI_TOKEN: ${{secrets.FIREBASE_CLI_TOKEN}}
+        FIREBASE_APP_ID: ${{secrets.FIREBASE_APP_ID}}
+        ANDROID_KEY_ALIAS: ${{secrets.ANDROID_KEY_ALIAS}}
+        ANDROID_KEY_PASSWORD: ${{secrets.ANDROID_KEY_PASSWORD}}
+        ANDROID_STORE_PASSWORD: ${{secrets.ANDROID_STORE_PASSWORD}}
+        ANDROID_SIGNING_KEY: ${{ steps.android_keystore.outputs.filePath }}
+        PRIVATE_SERVICE_ACCOUNT_KEY : ${{ secrets.PRIVATE_SERVICE_ACCOUNT_KEY }}
 
    
   

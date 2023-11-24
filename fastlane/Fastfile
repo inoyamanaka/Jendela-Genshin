@@ -1,6 +1,6 @@
 # Lane to Deploy Production-Release Bundle file in Internal track
 desc "Deploy Production-Release APK file in Internal track to PlayStore" # Lane description
-lane :deploy_development_release do |options|
+lane :deploy do |options|
    flutter_build
    gradle(
             task: "bundle", # assemble for release apk, assemble
@@ -30,4 +30,21 @@ lane :deploy_development_release do |options|
   #   android_artifact_path: "build/app/outputs/flutter-apk/app-development-release.apk",
   #   groups: "genshinns-tester"
   # )
+  end
+
+  desc "Fetches the latest version code from the Play Console and increments it by 1"
+  lane :fetch_and_increment_build_number do
+    app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
+
+    version_codes = google_play_track_version_codes(
+      package_name: app_identifier,
+      track: "internal",
+      json_key: ENV["ANDROID_JSON_KEY_FILE"]
+    )
+    
+    updated_version_code = version_codes[0] + 1
+    
+    increment_version_code(
+      version_code: updated_version_code
+    )
   end
