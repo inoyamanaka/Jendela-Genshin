@@ -74,13 +74,13 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
           name: Jendela Genshin
-          path:  build/app/outputs/bundle/release
+          path: build/app/outputs/bundle/developmentRelease/
 
     - name: Sign App Bundle
       uses: r0adkll/sign-android-release@v1   
       id: sign_app
       with:
-        releaseDirectory: build/app/outputs/bundle/release/
+        releaseDirectory: build/app/outputs/bundle/developmentRelease/
         signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
         alias: ${{ secrets.ANDROID_KEY_ALIAS }}         
         keyStorePassword: ${{ secrets.ANDROID_STORE_PASSWORD }}             
