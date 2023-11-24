@@ -67,26 +67,24 @@ jobs:
       run: flutter pub get
 
     - name: Build release app bundle
-      run: flutter build appbundle
-
-    # Create Bundle AAB Release
-    # Noted for main module build [main_project_module]:bundleRelease
-    - name: Build app bundle release (AAB) - ${{ env.main_project_module }} module
-      run: ./gradlew ${{ env.main_project_module }}:bundleRelease
-
-    # Noted For Output [main_project_module]/build/outputs/bundle/release/
-    - name: Upload AAB (App Bundle) Release - ${{ env.repository_name }}
-      uses: actions/upload-artifact@v3
-      with:
-        name: ${{ env.date_today }} - ${{ env.playstore_name }} - ${{ env.repository_name }} - App bundle(s) AAB release generated
-        path: ${{ env.main_project_module }}/build/outputs/bundle/release/
+      run: flutter build appbundle --flavor development --target lib/main_development.dart
 
     # Save the APK after the Build job is complete to publish it as a Github release in the next job
     - name: Upload APP BUNDLE
       uses: actions/upload-artifact@v3.1.2
       with:
           name: Jendela Genshin
-          path: app/build/outputs/apk/release/Jendela Genshin.aab
+          path:  build/app/outputs/bundle/release
+
+    - name: Sign App Bundle
+      uses: r0adkll/sign-android-release@v1   
+      id: sign_app
+      with:
+        releaseDirectory: build/app/outputs/bundle/release/
+        signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
+        alias: ${{ secrets.ANDROID_KEY_ALIAS }}         
+        keyStorePassword: ${{ secrets.ANDROID_STORE_PASSWORD }}             
+        keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
     
     - name: Set up Ruby 3.1
