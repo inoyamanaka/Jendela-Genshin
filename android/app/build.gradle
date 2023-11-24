@@ -94,6 +94,9 @@ android {
         //     minifyEnabled true
         //     proguardFiles getDefaultProguardFile('proguard-android.txt')
         // }
+        release {
+           
+       }
         debug {
             signingConfig signingConfigs.debug
         }
