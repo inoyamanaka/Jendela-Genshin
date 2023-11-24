@@ -7,3 +7,4 @@
 
 json_key_file(ENV["PRIVATE_SERVICE_ACCOUNT_KEY"])
 package_name("com.deploy.verygoodcore.genshin_app.dev")
+
