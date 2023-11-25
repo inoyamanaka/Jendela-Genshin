@@ -52,15 +52,10 @@ jobs:
     - name: Give permission
       run: chmod +x /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew
 
-    # # Run Build Project
-    # - name: Build gradle project
-    #   run: /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew build
-
     # Setup the flutter environment.
     - uses: subosito/flutter-action@v1
       with:
         channel: 'beta' # 'dev', 'alpha', default to: 'stable'
-        # flutter-version: '1.12.x' # you can also specify exact version of flutter
     
     # Get flutter dependencies.
     - name: Install Package
@@ -68,6 +63,7 @@ jobs:
 
     - name: Build release apk
       run: flutter build apk --flavor development --target lib/main_development.dart
+           jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore your_keystore.jks -storepass ${{ secrets.ANDROID_STORE_PASSWORD }} -keypass ${{ secrets.ANDROID_KEY_PASSWORD }} -signedjar build/app/outputs/apk/development/release/app-release-signed.apk build/app/outputs/apk/development/release/app-release-unsigned.apk ${{ secrets.ANDROID_KEY_ALIAS }}
 
     # Save the APK after the Build job is complete to publish it as a Github release in the next job
     - name: Upload APK
