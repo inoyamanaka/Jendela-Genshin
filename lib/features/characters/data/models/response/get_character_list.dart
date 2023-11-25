@@ -9,7 +9,7 @@ part 'get_character_list.g.dart';
   fieldRename: FieldRename.snake,
 )
 class CharacterListModel extends CharacterEntity {
-  const CharacterListModel({required List<DataCharacterListModel> super.data});
+  const CharacterListModel({required List<List<DataCharacterListModel>> super.data});
 
   factory CharacterListModel.fromJson(Map<String, dynamic> json) =>
       _$CharacterListModelFromJson(json);

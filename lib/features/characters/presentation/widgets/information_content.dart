@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:genshin_app/core/shared/constants/fonts.dart';
-import 'package:genshin_app/features/characters/presentation/widgets/titleDesc.dart';
+import 'package:genshin_app/features/characters/presentation/widgets/title_desc.dart';
 
 class InformationContent extends StatelessWidget {
   const InformationContent({
@@ -64,8 +64,8 @@ class InformationContent extends StatelessWidget {
                 ),
                 SizedBox(width: 20),
                 TitleDescription(
-                  title: 'Vision',
-                  description: 'Geo',
+                  title: 'Weapon',
+                  description: 'Sword',
                 ),
               ],
             ),
@@ -94,6 +94,7 @@ class InformationContent extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 showBottomSheet<void>(

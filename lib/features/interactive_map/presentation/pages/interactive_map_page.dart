@@ -24,7 +24,7 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
           onProgress: (int progress) {
             controller
               ..runJavaScript(
-                'document.getElementsByClassName("navbar-collapse-maps")[0].remove();',
+                '''document.getElementsByClassName("navbar-collapse-maps")[0].remove();''',
               )
               ..runJavaScript(
                 'document.getElementsByClassName("navbar-logo")[0].remove();',

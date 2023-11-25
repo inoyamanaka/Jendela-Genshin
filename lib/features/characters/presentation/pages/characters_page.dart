@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genshin_app/core/shared/constants/colors.dart';
 import 'package:genshin_app/core/shared/constants/fonts.dart';
 import 'package:genshin_app/di/injection.dart';
+import 'package:genshin_app/features/characters/domain/entities/characters_entity.dart';
 import 'package:genshin_app/features/characters/presentation/bloc/character_bloc.dart';
 import 'package:genshin_app/features/characters/presentation/widgets/character_card.dart';
 
@@ -38,13 +39,18 @@ class _CharacterPageState extends State<CharacterPage> {
             if (state is CharacterSuccess) {
               return Column(
                 children: [
-                  ValueListenableBuilder(
-                    valueListenable: indexTab,
-                    builder: (context, value, child) => Container(
-                      height: 200,
-                      color: Colors.grey,
-                      child: Image.asset(
-                        'assets/images/city_${value + 1}.png',
+                  SizedBox(
+                    height: 200,
+                    child: ValueListenableBuilder(
+                      valueListenable: indexTab,
+                      builder: (context, value, child) => ColoredBox(
+                        color: Colors.grey,
+                        child: AnimatedBuilder(
+                          animation: indexTab,
+                          builder: (context, child) => Image.asset(
+                            'assets/images/city_${value + 1}.png',
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -88,34 +94,11 @@ class _CharacterPageState extends State<CharacterPage> {
                         ),
                       ],
                       views: [
-                        Expanded(
-                          child: GridView.builder(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 10,
-                            ),
-                            gridDelegate:
-                                const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 200,
-                              childAspectRatio: 2 / 3,
-                              crossAxisSpacing: 20,
-                              mainAxisSpacing: 20,
-                            ),
-                            itemCount: state.data.data.length,
-                            cacheExtent: 999999,
-                            itemBuilder: (BuildContext ctx, index) {
-                              return CharacterCard(
-                                name: state.data.data[index].name,
-                                imgChar: state.data.data[index].imgInGame,
-                                background: state.data.data[index].imgNamecard,
-                              );
-                            },
-                          ),
-                        ),
-                        Container(color: Colors.green),
-                        Container(color: Colors.red),
-                        Container(color: Colors.blue),
-                        Container(color: Colors.yellow),
+                        CharactersListRegion(indexTab: 0, data: state.data),
+                        CharactersListRegion(indexTab: 1, data: state.data),
+                        CharactersListRegion(indexTab: 2, data: state.data),
+                        CharactersListRegion(indexTab: 3, data: state.data),
+                        CharactersListRegion(indexTab: 4, data: state.data),
                       ],
                       onChange: (p0) {
                         indexTab.value = p0;
@@ -129,6 +112,48 @@ class _CharacterPageState extends State<CharacterPage> {
           },
         ),
       ),
+    );
+  }
+}
+
+class CharactersListRegion extends StatelessWidget {
+  const CharactersListRegion({
+    required this.indexTab,
+    required this.data,
+    super.key,
+  });
+
+  final int indexTab;
+  final CharacterEntity data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: GridView.builder(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 10,
+            ),
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 200,
+              childAspectRatio: 2 / 3,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+            ),
+            itemCount: data.data[indexTab].length,
+            cacheExtent: 999999,
+            itemBuilder: (BuildContext ctx, index) {
+              return CharacterCard(
+                name: data.data[indexTab][index].name,
+                imgChar: data.data[indexTab][index].imgInGame,
+                background: data.data[indexTab][index].imgNamecard,
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

@@ -9,13 +9,15 @@ part of 'get_character_list.dart';
 CharacterListModel _$CharacterListModelFromJson(Map<String, dynamic> json) =>
     CharacterListModel(
       data: (json['data'] as List<dynamic>)
-          .map(
-              (e) => DataCharacterListModel.fromJson(e as Map<String, dynamic>),)
+          .map((e) => (e as List<dynamic>)
+              .map((e) =>
+                  DataCharacterListModel.fromJson(e as Map<String, dynamic>))
+              .toList())
           .toList(),
     );
 
 DataCharacterListModel _$DataCharacterListModelFromJson(
-        Map<String, dynamic> json,) =>
+        Map<String, dynamic> json) =>
     DataCharacterListModel(
       name: json['name'] as String,
       element: json['element'] as String,
