@@ -71,9 +71,11 @@ jobs:
     - run: flutter build apk --flavor development --target lib/main_development.dart
 
     - name: Builds - build Flutter APK and create github release
-      uses: ncipollo/release-action@v2
+      uses: ncipollo/release-action@v1.10.0
       with:
-         artifacts: "build/app/outputs/flutter-apk/*.apk"
+         artifacts: "build/app/outputs/development/release/*.apk"
+         tag: "on_deploy"
+         allowUpdates: true
 
     # Save the APK after the Build job is complete to publish it as a Github release in the next job
     - name: Upload APK
