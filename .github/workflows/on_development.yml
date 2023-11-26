@@ -80,7 +80,7 @@ jobs:
     - name: Builds - build Flutter APK and create github release
       uses: ncipollo/release-action@v1.10.0
       with:
-         artifacts: "build/app/outputs/development/release/*.apk"
+         artifacts: "build/app/outputs/apk/development/release/*.apk"
          tag: "on_deploy"
          allowUpdates: true
 
