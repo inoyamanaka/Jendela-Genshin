@@ -68,6 +68,13 @@ jobs:
         fileName: "android_keystore.keystore"
         encodedString: ${{ secrets.ANDROID_SIGNING_KEY }}
 
+    - name: Create key.properties
+      run: |
+        echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+        echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
+        echo "storePassword=${ secrets.ANDROID_STORE_PASSWORD }}" >> android/key.properties
+        echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
+
     - run: flutter build apk --flavor development --target lib/main_development.dart
 
     - name: Builds - build Flutter APK and create github release
@@ -89,7 +96,7 @@ jobs:
       id: sign_app
       with:
         releaseDirectory: build/app/outputs/apk/development/release/
-        signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
+        signingKeyBase64: ${{ steps.android_keystore.outputs.filePath }}
         alias: ${{ secrets.ANDROID_KEY_ALIAS }}         
         keyStorePassword: ${{ secrets.ANDROID_STORE_PASSWORD }}             
         keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
