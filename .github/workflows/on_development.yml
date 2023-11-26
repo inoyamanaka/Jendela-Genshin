@@ -61,9 +61,9 @@ jobs:
     - name: Install Package
       run: flutter pub get
 
-    - name: Build release apk
-      run: flutter build apk --flavor development --target lib/main_development.dart
-           jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore your_keystore.jks -storepass ${{ secrets.ANDROID_STORE_PASSWORD }} -keypass ${{ secrets.ANDROID_KEY_PASSWORD }} -signedjar build/app/outputs/apk/development/release/app-release-signed.apk build/app/outputs/apk/development/release/app-release-unsigned.apk ${{ secrets.ANDROID_KEY_ALIAS }}
+    - name: Builds - build Flutter APK and create github release
+      uses: Dank-del/flutter-build-and-publish-action@v1
+            
 
     # Save the APK after the Build job is complete to publish it as a Github release in the next job
     - name: Upload APK
