@@ -52,10 +52,6 @@ jobs:
     - name: Give permission
       run: chmod +x /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew
 
-    # # Run Build Project
-    # - name: Build gradle project
-    #   run: /home/runner/work/Jendela-Genshin/Jendela-Genshin/android/gradlew build
-
     # Setup the flutter environment.
     - uses: subosito/flutter-action@v1
       with:
