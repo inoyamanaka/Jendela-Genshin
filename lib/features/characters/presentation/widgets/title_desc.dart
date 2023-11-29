@@ -19,7 +19,8 @@ class TitleDescription extends StatelessWidget {
         children: [
           Text(
             title,
-            style: GenshinFonts.subTitleInter.copyWith(),
+            style: GenshinFonts.subTitleInter
+                .copyWith(fontSize: 14, fontWeight: FontWeight.bold),
           ),
           const Gap(5),
           Text(

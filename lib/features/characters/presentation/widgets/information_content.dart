@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:genshin_app/core/shared/constants/fonts.dart';
 import 'package:genshin_app/features/characters/domain/entities/character_detail_entity.dart';
+import 'package:genshin_app/features/characters/presentation/widgets/best_team.dart';
 import 'package:genshin_app/features/characters/presentation/widgets/title_desc.dart';
 
 class InformationContent extends StatelessWidget {
@@ -14,10 +15,13 @@ class InformationContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final carouselIndicator = ValueNotifier<int>(0);
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         const Gap(10),
         Row(
+          
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
@@ -99,14 +103,17 @@ class InformationContent extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
-            LimitedBox(
-              maxHeight: 200,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemBuilder: (context, index) => const Column(),
-              ),
+            Text(
+              'Best Team',
+              style: GenshinFonts.subTitleInter
+                  .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            Text(data.bestTeam[0].teamName),
+            BestTeamWidget(carouselIndicator: carouselIndicator, data: data),
+            Text(
+              'Best Weapons',
+              style: GenshinFonts.subTitleInter
+                  .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
             SizedBox(
               height: 100,
               width: double.infinity,
@@ -114,17 +121,17 @@ class InformationContent extends StatelessWidget {
                 children: [
                   Flexible(
                     child: ListView.builder(
-                      itemCount: 4,
+                      itemCount: data.bestWeapon.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) => Row(
                         children: [
                           const Gap(10),
                           Container(
-                            color: Colors.red,
-                            height: 80,
-                            width: 80,
+                            color: Colors.transparent,
+                            height: 60,
+                            width: 60,
                             child: Image.network(
-                              data.bestTeam[0].characters[index].name,
+                              data.bestWeapon[index].imageUrl,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -140,56 +147,30 @@ class InformationContent extends StatelessWidget {
               'Skills',
               style: GenshinFonts.subTitleInter,
             ),
-            Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(data.skills[0].imageUrl),
-                ),
-                const Gap(10),
-                TitleDescription(
-                  title: data.skills[0].name,
-                  description: data.skills[0].description,
-                ),
-              ],
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 5,
+              itemBuilder: (context, index) => Column(
+                children: [
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        backgroundImage:
+                            NetworkImage(data.skills[index].imageUrl),
+                      ),
+                      const Gap(10),
+                      TitleDescription(
+                        title: data.skills[index].name,
+                        description: data.skills[index].description,
+                      ),
+                    ],
+                  ),
+                  const Gap(20),
+                ],
+              ),
             ),
             const SizedBox(height: 20),
-            Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(data.skills[1].imageUrl),
-                ),
-                const Gap(10),
-                TitleDescription(
-                  title: data.skills[1].name,
-                  description: data.skills[1].description,
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(data.skills[2].imageUrl),
-                ),
-                const Gap(10),
-                TitleDescription(
-                  title: data.skills[2].name,
-                  description: data.skills[2].description,
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            const Row(
-              children: [
-                CircleAvatar(),
-                Gap(10),
-                TitleDescription(
-                  title: 'Passive',
-                  description:
-                      '''Normal Attack Perform up to 5 rapid strikes. Charged Attack Consumes a certain amount of Stamina to unleash 2 rapid sword strikes. Plunging Attack Plunges from mid-air to strike the ground below, damaging opponents along the path and dealing AoE DMG upon impact.''',
-                ),
-              ],
-            ),
           ],
         ),
       ],

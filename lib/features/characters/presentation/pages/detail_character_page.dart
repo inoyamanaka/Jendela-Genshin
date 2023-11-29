@@ -67,16 +67,9 @@ class _DetailCharacterPageState extends State<DetailCharacterPage> {
                                       topRight: Radius.circular(20),
                                     ),
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 20,
-                                      right: 20,
-                                      // top: 10,
-                                    ),
-                                    child: SingleChildScrollView(
-                                      child: InformationContent(
-                                        data: state.data,
-                                      ),
+                                  child: SingleChildScrollView(
+                                    child: InformationContent(
+                                      data: state.data,
                                     ),
                                   ),
                                 ),
