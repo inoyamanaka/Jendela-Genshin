@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:genshin_app/core/shared/constants/fonts.dart';
+import 'package:genshin_app/features/characters/domain/entities/character_detail_entity.dart';
 import 'package:genshin_app/features/characters/presentation/widgets/title_desc.dart';
 
 class InformationContent extends StatelessWidget {
   const InformationContent({
+    required this.data,
     super.key,
   });
+
+  final CharacterDetailEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +21,11 @@ class InformationContent extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'ALBEDO',
+              data.characterName,
               style: GenshinFonts.subTitleInria,
             ),
             Text(
-              'Geo',
+              data.element,
               style: GenshinFonts.subTitleInria.copyWith(fontSize: 18),
             ),
           ],
@@ -55,32 +59,32 @@ class InformationContent extends StatelessWidget {
               style: GenshinFonts.subTitleInter,
             ),
             const SizedBox(height: 20),
-            const Row(
+            Row(
               children: [
-                SizedBox(width: 20),
-                TitleDescription(
+                const SizedBox(width: 20),
+                const TitleDescription(
                   title: 'Birthday',
                   description: '01/09',
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 TitleDescription(
                   title: 'Weapon',
-                  description: 'Sword',
+                  description: data.weapon,
                 ),
               ],
             ),
             const SizedBox(height: 20),
-            const Row(
+            Row(
               children: [
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 TitleDescription(
                   title: 'Affiliation',
-                  description: 'Knight of Favonoius',
+                  description: data.affiliation,
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 TitleDescription(
                   title: 'Constellation',
-                  description: 'Princeps Cretaceus',
+                  description: data.constellation,
                 ),
               ],
             ),
@@ -95,54 +99,82 @@ class InformationContent extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                showBottomSheet<void>(
-                  context: context,
-                  builder: (context) {
-                    return Container();
-                  },
-                );
-              },
-              child: const Text('Constellation'),
+            LimitedBox(
+              maxHeight: 200,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemBuilder: (context, index) => const Column(),
+              ),
+            ),
+            Text(data.bestTeam[0].teamName),
+            SizedBox(
+              height: 100,
+              width: double.infinity,
+              child: Row(
+                children: [
+                  Flexible(
+                    child: ListView.builder(
+                      itemCount: 4,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => Row(
+                        children: [
+                          const Gap(10),
+                          Container(
+                            color: Colors.red,
+                            height: 80,
+                            width: 80,
+                            child: Image.network(
+                              data.bestTeam[0].characters[index].name,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 20),
             Text(
               'Skills',
               style: GenshinFonts.subTitleInter,
             ),
-            const Row(
+            Row(
               children: [
-                CircleAvatar(),
-                Gap(10),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(data.skills[0].imageUrl),
+                ),
+                const Gap(10),
                 TitleDescription(
-                  title: 'Elemental Burst',
-                  description:
-                      '''Under Albedo's command, Geo crystals surge and burst forth, dealing AoE Geo DMG in front of him. If a Solar Isotoma created by Albedo himself is on the field, 7 Fatal Blossoms will be generated in the Solar Isotoma field, bursting violently into bloom and dealing AoE Geo DMG Tecotonic Tide DMG and Fatal Blossom DMG will not generate Transient Blossoms ''',
+                  title: data.skills[0].name,
+                  description: data.skills[0].description,
                 ),
               ],
             ),
             const SizedBox(height: 20),
-            const Row(
+            Row(
               children: [
-                CircleAvatar(),
-                Gap(10),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(data.skills[1].imageUrl),
+                ),
+                const Gap(10),
                 TitleDescription(
-                  title: 'Elemental Skill',
-                  description:
-                      '''Albedo creates a Solar Isotoma using alchemy, which deals AoE Geo DMG on appearance. Solar Isotoma When enemies within the Solar Isotoma zone are hit, the Solar Isotoma will generate Transient Blossoms which deal AoE Geo DMG. DMG dealt scales off Albedo's DEF. Transient Blossoms can only be generated once every 2s. When a character is located at the locus of the Solar Isotoma, the Solar Isotoma will accumulate Geo power to form a crystallized platform that lifts the character up to a certain height. Only one crystallized platform can exist at a time. Solar Isotoma is considered a Geo construct. Hold to designate the location of the skill''',
+                  title: data.skills[1].name,
+                  description: data.skills[1].description,
                 ),
               ],
             ),
             const SizedBox(height: 20),
-            const Row(
+            Row(
               children: [
-                CircleAvatar(),
-                Gap(10),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(data.skills[2].imageUrl),
+                ),
+                const Gap(10),
                 TitleDescription(
-                  title: 'Normal Attack',
-                  description:
-                      '''Normal Attack Perform up to 5 rapid strikes. Charged Attack Consumes a certain amount of Stamina to unleash 2 rapid sword strikes. Plunging Attack Plunges from mid-air to strike the ground below, damaging opponents along the path and dealing AoE DMG upon impact.''',
+                  title: data.skills[2].name,
+                  description: data.skills[2].description,
                 ),
               ],
             ),

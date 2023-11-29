@@ -37,7 +37,7 @@ class NavigationPage extends StatelessWidget {
             SalomonBottomBarItem(
               icon: const Icon(Icons.home),
               title: const Text('Home'),
-              selectedColor: Colors.purple,
+              selectedColor: Colors.white,
             ),
 
             /// Likes
@@ -51,14 +51,14 @@ class NavigationPage extends StatelessWidget {
             SalomonBottomBarItem(
               icon: const Icon(Icons.schedule),
               title: const Text('Schedule'),
-              selectedColor: Colors.orange,
+              selectedColor: Colors.white,
             ),
 
             /// Profile
             SalomonBottomBarItem(
               icon: const Icon(Icons.person),
               title: const Text('Profile'),
-              selectedColor: Colors.teal,
+              selectedColor: Colors.white,
             ),
           ],
         ),

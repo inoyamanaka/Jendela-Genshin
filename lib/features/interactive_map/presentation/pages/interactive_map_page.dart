@@ -37,7 +37,7 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
       )
       ..loadRequest(
         Uri.parse(
-          'https://mapgenie.io/genshin-impact/maps/teyvat',
+          'https://act.hoyolab.com/ys/app/interactive-map/index.html?lang=en-us#/map/2?shown_types=533,527,528,233,529,8,9',
         ),
       );
   }
