@@ -62,15 +62,10 @@ jobs:
     - name: Install Package
       run: flutter pub get
 
-    - name: Build release app bundle
-      run: flutter build appbundle --flavor development --target lib/main_development.dart
+    # - name: Build release app bundle
+    #   run: flutter build appbundle --flavor development --target lib/main_development.dart
 
-    # Save the APK after the Build job is complete to publish it as a Github release in the next job
-    - name: Upload APP BUNDLE
-      uses: actions/upload-artifact@v3.1.2
-      with:
-          name: Jendela Genshin
-          path: build/app/outputs/bundle/developmentRelease/
+   
 
     - name: Sign App Bundle
       uses: r0adkll/sign-android-release@v1   
@@ -81,6 +76,13 @@ jobs:
         alias: ${{ secrets.ANDROID_KEY_ALIAS }}         
         keyStorePassword: ${{ secrets.ANDROID_STORE_PASSWORD }}             
         keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+
+     # Save the APK after the Build job is complete to publish it as a Github release in the next job
+    - name: Upload APP BUNDLE
+      uses: actions/upload-artifact@v3.1.2
+      with:
+          name: Jendela Genshin
+          path: build/app/outputs/bundle/developmentRelease/
 
     
     - name: Set up Ruby 3.1
