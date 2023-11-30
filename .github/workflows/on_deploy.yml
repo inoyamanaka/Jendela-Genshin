@@ -62,10 +62,8 @@ jobs:
     - name: Install Package
       run: flutter pub get
 
-    # - name: Build release app bundle
-    #   run: flutter build appbundle --flavor development --target lib/main_development.dart
-
-   
+    - name: Build release app bundle
+      run: flutter build appbundle --flavor development --target lib/main_development.dart
 
     - name: Sign App Bundle
       uses: r0adkll/sign-android-release@v1   
