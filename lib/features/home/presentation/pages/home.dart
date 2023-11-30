@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 30),
+                const SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18),
                   child: Row(
@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 10),
                 ContentWidget(
                   title: 'Weapons',
-                  image: 'assets/images/nation_image.jpg',
+                  image: 'assets/images/weapon_image.png',
                   onTap: () {
                     Navigator.push(
                       context,

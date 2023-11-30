@@ -4,7 +4,7 @@ class CharacterEntity extends Equatable {
   const CharacterEntity({
     required this.data,
   });
-  final List<DataCharacterEntity> data;
+  final List<List<DataCharacterEntity>> data;
 
   @override
   List<Object?> get props => [data];
