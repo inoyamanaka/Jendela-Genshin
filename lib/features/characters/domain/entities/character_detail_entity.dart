@@ -29,7 +29,7 @@ class CharacterDetailEntity extends Equatable {
   final List<CharImage> charImage;
   final List<Material> material;
   final List<Best> bestWeapon;
-  final List<Best> bestArtefact;
+  final List<BestArtefact> bestArtefact;
   final List<BestTeam> bestTeam;
   final List<String> statPriority;
   final List<Skill> skills;
@@ -65,6 +65,30 @@ class Best extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [imageUrl, name];
+}
+
+class BestArtefact extends Equatable {
+  const BestArtefact({
+    required this.artifacts,
+  });
+  final List<Artifact> artifacts;
+
+  @override
+  List<Object?> get props => [artifacts];
+}
+
+class Artifact extends Equatable {
+  const Artifact({
+    required this.imageUrl,
+    required this.name,
+    required this.amount,
+  });
+  final String imageUrl;
+  final String name;
+  final String amount;
+
+  @override
+  List<Object?> get props => [imageUrl, name, amount];
 }
 
 class BestTeam extends Equatable {

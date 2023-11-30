@@ -23,7 +23,7 @@ class CharacterDetailModel extends CharacterDetailEntity {
     required List<CharImageModel> super.charImage,
     required List<MaterialModel> super.material,
     required List<BestModel> super.bestWeapon,
-    required List<BestModel> super.bestArtefact,
+    required List<BestArtefactModel> super.bestArtefact,
     required List<BestTeamModel> super.bestTeam,
     required List<String> super.statPriority,
     required List<SkillModel> super.skills,
@@ -42,6 +42,33 @@ class BestModel extends Best {
   const BestModel({required super.imageUrl, required super.name});
   factory BestModel.fromJson(Map<String, dynamic> json) =>
       _$BestModelFromJson(json);
+}
+
+@JsonSerializable(
+  createToJson: false,
+  createFactory: true,
+  fieldRename: FieldRename.snake,
+)
+class BestArtefactModel extends BestArtefact {
+  const BestArtefactModel({required List<ArtifactModel> super.artifacts});
+  factory BestArtefactModel.fromJson(Map<String, dynamic> json) =>
+      _$BestArtefactModelFromJson(json);
+}
+
+@JsonSerializable(
+  createToJson: false,
+  createFactory: true,
+  fieldRename: FieldRename.snake,
+)
+class ArtifactModel extends Artifact {
+  const ArtifactModel({
+    required super.imageUrl,
+    required super.name,
+    required super.amount,
+  });
+
+  factory ArtifactModel.fromJson(Map<String, dynamic> json) =>
+      _$ArtifactModelFromJson(json);
 }
 
 @JsonSerializable(

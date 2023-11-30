@@ -29,7 +29,7 @@ CharacterDetailModel _$CharacterDetailModelFromJson(
           .map((e) => BestModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       bestArtefact: (json['best_artefact'] as List<dynamic>)
-          .map((e) => BestModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => BestArtefactModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       bestTeam: (json['best_team'] as List<dynamic>)
           .map((e) => BestTeamModel.fromJson(e as Map<String, dynamic>))
@@ -45,6 +45,20 @@ CharacterDetailModel _$CharacterDetailModelFromJson(
 BestModel _$BestModelFromJson(Map<String, dynamic> json) => BestModel(
       imageUrl: json['image_url'] as String,
       name: json['name'] as String,
+    );
+
+BestArtefactModel _$BestArtefactModelFromJson(Map<String, dynamic> json) =>
+    BestArtefactModel(
+      artifacts: (json['artifacts'] as List<dynamic>)
+          .map((e) => ArtifactModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+ArtifactModel _$ArtifactModelFromJson(Map<String, dynamic> json) =>
+    ArtifactModel(
+      imageUrl: json['image_url'] as String,
+      name: json['name'] as String,
+      amount: json['amount'] as String,
     );
 
 BestTeamModel _$BestTeamModelFromJson(Map<String, dynamic> json) =>
