@@ -127,13 +127,6 @@ jobs:
         fileName: "serviceAccount.json"
         encodedString: ${{ secrets.PRIVATE_SERVICE_ACCOUNT_KEY }}
 
-    - name: Decode Keystore File
-      uses: timheuer/base64-to-file@v1
-      id: android_keystore
-      with:
-        fileName: "android_keystore.keystore"
-        encodedString: ${{ secrets.ANDROID_SIGNING_KEY }}
-
     - name: Distribute app with 🔥 App Distribution 🚀
       run: bundle exec fastlane deploy
       env:
