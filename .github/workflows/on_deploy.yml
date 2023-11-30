@@ -62,6 +62,20 @@ jobs:
     - name: Install Package
       run: flutter pub get
 
+    - name: Decode Keystore File
+      uses: timheuer/base64-to-file@v1
+      id: android_keystore
+      with:
+        fileName: "android_keystore.keystore"
+        encodedString: ${{ secrets.ANDROID_SIGNING_KEY }}
+
+    - name: Create key.properties
+      run: |
+        echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+        echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
+        echo "storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}" >> android/key.properties
+        echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
+
     - name: Build release app bundle
       run: flutter build appbundle --flavor development --target lib/main_development.dart
 
