@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:genshin_app/core/shared/constants/fonts.dart';
@@ -46,8 +47,9 @@ class InformationContent extends StatelessWidget {
               itemCount: 5,
               itemBuilder: (context, index) => Row(
                 children: [
-                  Image.network(
-                    'https://i.pinimg.com/originals/e8/91/66/e891669c27c833ff0f2db2c083344117.png',
+                  CachedNetworkImage(
+                    imageUrl:
+                        'https://i.pinimg.com/originals/e8/91/66/e891669c27c833ff0f2db2c083344117.png',
                     width: 18,
                     height: 18,
                   ),
@@ -191,8 +193,8 @@ class InformationContent extends StatelessWidget {
                                           color: Colors.transparent,
                                           height: 60,
                                           width: 60,
-                                          child: Image.network(
-                                            data.bestArtefact[index]
+                                          child: CachedNetworkImage(
+                                            imageUrl: data.bestArtefact[index]
                                                 .artifacts[indexAmout].imageUrl,
                                             fit: BoxFit.contain,
                                           ),

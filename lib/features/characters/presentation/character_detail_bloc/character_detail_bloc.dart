@@ -1,6 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:genshin_app/core/utils/usecase.dart';
-import 'package:genshin_app/features/characters/data/models/request/get_detail_character_body.dart';
 import 'package:genshin_app/features/characters/domain/usecases/get_detail_character.dart';
 import 'package:genshin_app/features/characters/presentation/character_detail_bloc/character_detail_event.dart';
 import 'package:genshin_app/features/characters/presentation/character_detail_bloc/character_detail_state.dart';

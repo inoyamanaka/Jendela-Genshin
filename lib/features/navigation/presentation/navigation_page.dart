@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:genshin_app/core/shared/constants/colors.dart';
 import 'package:genshin_app/features/home/presentation/pages/home.dart';
 import 'package:genshin_app/features/interactive_map/presentation/pages/interactive_map_page.dart';
+import 'package:genshin_app/features/schedule/presentation/pages/schedule_page.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class NavigationPage extends StatelessWidget {
@@ -13,6 +14,7 @@ class NavigationPage extends StatelessWidget {
     final listPages = [
       const HomePage(),
       const InteractiveMapPage(),
+      const SchedulePage(),
       // const CharacterPage(),
       // const EventPage(),
       // const HomePage(),

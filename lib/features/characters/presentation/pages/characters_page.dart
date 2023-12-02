@@ -1,6 +1,7 @@
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:genshin_app/core/shared/constants/colors.dart';
 import 'package:genshin_app/core/shared/constants/fonts.dart';
 import 'package:genshin_app/di/injection.dart';
@@ -34,7 +35,22 @@ class _CharacterPageState extends State<CharacterPage> {
         body: BlocBuilder<CharacterBloc, CharacterState>(
           builder: (context, state) {
             if (state is CharacterLoading) {
-              const CircularProgressIndicator();
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircularProgressIndicator(
+                      backgroundColor: Colors.blue,
+                      color: Colors.white,
+                    ),
+                    const Gap(10),
+                    Text(
+                      'Loading....',
+                      style: GenshinFonts.subTitleInter,
+                    ),
+                  ],
+                ),
+              );
             }
             if (state is CharacterSuccess) {
               return Column(

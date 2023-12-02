@@ -15,21 +15,20 @@ class CharacterRepositoryImpl implements CharacterRepository {
   Future<Either<Failure, CharacterEntity>> getListCharacter() async {
     try {
       final result = await datasource.getListCharacter();
-
       return Right(result);
     } on DioException catch (e) {
-      // Handle DioException
       return Left(
         ServerFailure.fromJson(e.response!.data as Map<String, dynamic>),
       );
     } catch (e) {
-      // Handle other exceptions
       return Left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, CharacterDetailEntity>> getDetailCharacter(CharacterDetailBody body) async {
+  Future<Either<Failure, CharacterDetailEntity>> getDetailCharacter(
+    CharacterDetailBody body,
+  ) async {
     try {
       final result = await datasource.getDetailCharacter(body);
 

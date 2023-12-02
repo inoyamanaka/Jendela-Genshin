@@ -37,14 +37,11 @@ class CharacterRemoteDatasourceImpl implements CharacterRemoteDatasource {
   Future<CharacterDetailEntity> getDetailCharacter(
     CharacterDetailBody body,
   ) async {
-    print(body);
+
     try {
       final response = await _client.get<Map<String, dynamic>>(
         '${ApiPath.getListCharacter}/${body.name}',
       );
-
-      print(response);
-
       return CharacterDetailModel.fromJson(response.data!);
     } on DioException catch (e) {
       throw DioException(
