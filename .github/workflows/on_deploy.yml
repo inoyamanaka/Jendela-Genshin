@@ -98,7 +98,7 @@ jobs:
 
     
     - name: Set up Ruby 3.1
-      uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
+      uses: ruby/setup-ruby@b203567269b5bbc256dbc1c84f7495913f977353
       with:
         ruby-version: 3.1
     
