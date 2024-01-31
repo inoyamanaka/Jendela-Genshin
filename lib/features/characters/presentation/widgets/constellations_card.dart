@@ -6,9 +6,9 @@ import 'package:genshin_app/features/characters/domain/entities/character_detail
 
 class ConstellationCard extends StatelessWidget {
   const ConstellationCard({
-    super.key,
     required this.skillIndex,
     required this.data,
+    super.key,
   });
 
   final ValueNotifier<int> skillIndex;
@@ -37,8 +37,7 @@ class ConstellationCard extends StatelessWidget {
                               skillIndex.value = index + 5;
                             },
                             child: CachedNetworkImage(
-                              imageUrl:
-                                  data.skills[index + 5].imageUrl,
+                              imageUrl: data.skills[index + 5].imageUrl,
                             ),
                           ),
                         ),
@@ -68,8 +67,7 @@ class ConstellationCard extends StatelessWidget {
                               skillIndex.value = index + 5 + 3;
                             },
                             child: CachedNetworkImage(
-                              imageUrl:
-                                  data.skills[index + 5 + 3].imageUrl,
+                              imageUrl: data.skills[index + 5 + 3].imageUrl,
                             ),
                           ),
                         ),

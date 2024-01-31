@@ -11,13 +11,13 @@ CharacterListModel _$CharacterListModelFromJson(Map<String, dynamic> json) =>
       data: (json['data'] as List<dynamic>)
           .map((e) => (e as List<dynamic>)
               .map((e) =>
-                  DataCharacterListModel.fromJson(e as Map<String, dynamic>))
-              .toList())
+                  DataCharacterListModel.fromJson(e as Map<String, dynamic>),)
+              .toList(),)
           .toList(),
     );
 
 DataCharacterListModel _$DataCharacterListModelFromJson(
-        Map<String, dynamic> json) =>
+        Map<String, dynamic> json,) =>
     DataCharacterListModel(
       name: json['name'] as String,
       element: json['element'] as String,

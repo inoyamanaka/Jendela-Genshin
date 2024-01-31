@@ -10,7 +10,8 @@ ScheduleModel _$ScheduleModelFromJson(Map<String, dynamic> json) =>
     ScheduleModel(
       characterSchedule: (json['character_schedule'] as List<dynamic>)
           .map(
-              (e) => CharacterScheduleModel.fromJson(e as Map<String, dynamic>))
+            (e) => CharacterScheduleModel.fromJson(e as Map<String, dynamic>),
+          )
           .toList(),
       weaponSchedule: (json['weapon_schedule'] as List<dynamic>)
           .map((e) => WeaponScheduleModel.fromJson(e as Map<String, dynamic>))
@@ -18,7 +19,8 @@ ScheduleModel _$ScheduleModelFromJson(Map<String, dynamic> json) =>
     );
 
 CharacterScheduleModel _$CharacterScheduleModelFromJson(
-        Map<String, dynamic> json) =>
+  Map<String, dynamic> json,
+) =>
     CharacterScheduleModel(
       material:
           MaterialModel.fromJson(json['material'] as Map<String, dynamic>),
@@ -26,8 +28,9 @@ CharacterScheduleModel _$CharacterScheduleModelFromJson(
       characterList: (json['character_list'] as List<dynamic>)
           .map((e) => (e as List<dynamic>)
               .map(
-                  (e) => CharacterListModel.fromJson(e as Map<String, dynamic>))
-              .toList())
+                (e) => CharacterListModel.fromJson(e as Map<String, dynamic>),
+              )
+              .toList(),)
           .toList(),
     );
 

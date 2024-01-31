@@ -10,7 +10,6 @@ class CharacterDetailBloc
       emit(CharacterDetailLoading());
       try {
         final result = await usecase.call(event.body);
-        print(result);
         result.fold((l) {
           emit(CharacterDetailFailure(l.message));
         }, (r) {

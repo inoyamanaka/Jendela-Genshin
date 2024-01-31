@@ -7,7 +7,7 @@ part of 'get_detail_character.dart';
 // **************************************************************************
 
 CharacterDetailModel _$CharacterDetailModelFromJson(
-        Map<String, dynamic> json) =>
+        Map<String, dynamic> json,) =>
     CharacterDetailModel(
       characterName: json['character_name'] as String,
       element: json['element'] as String,

@@ -103,38 +103,34 @@ class _DetailCharacterPageState extends State<DetailCharacterPage> {
                       physics: const NeverScrollableScrollPhysics(),
                       child: SizedBox(
                         height: MediaQuery.sizeOf(context).height * 4.3,
-                        child: SizedBox(
-                          child: Stack(
-                            children: [
-                              SizedBox(
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        height:
-                                            MediaQuery.sizeOf(context).height,
-                                        decoration: const BoxDecoration(
-                                          color: GenshinColors.blackPrimary,
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            topRight: Radius.circular(20),
-                                          ),
-                                        ),
-                                        child: SingleChildScrollView(
-                                          // controller: controller,
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
-                                          child: InformationContent(
-                                            data: state.data,
-                                          ),
-                                        ),
+                        child: Stack(
+                          children: [
+                            Column(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    height:
+                                        MediaQuery.sizeOf(context).height,
+                                    decoration: const BoxDecoration(
+                                      color: GenshinColors.blackPrimary,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20),
                                       ),
                                     ),
-                                  ],
+                                    child: SingleChildScrollView(
+                                      // controller: controller,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      child: InformationContent(
+                                        data: state.data,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),

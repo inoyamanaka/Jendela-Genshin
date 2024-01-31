@@ -4,8 +4,8 @@ import 'package:genshin_app/features/characters/domain/entities/character_detail
 
 class BestWeaponWidget extends StatelessWidget {
   const BestWeaponWidget({
-    super.key,
     required this.data,
+    super.key,
   });
 
   final CharacterDetailEntity data;

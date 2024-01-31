@@ -8,5 +8,3 @@ sealed class CharacterEvent extends Equatable {
 }
 
 class GetCharacterEvent extends CharacterEvent {}
-
-

@@ -63,7 +63,6 @@ class Best extends Equatable {
   final String name;
 
   @override
-  // TODO: implement props
   List<Object?> get props => [imageUrl, name];
 }
 
@@ -154,7 +153,6 @@ class Material extends Equatable {
   final String image;
 
   @override
-  // TODO: implement props
   List<Object?> get props => [name, image];
 }
 
@@ -171,6 +169,5 @@ class Skill extends Equatable {
   final String description;
 
   @override
-  // TODO: implement props
   List<Object?> get props => [type, imageUrl, name, description];
 }
