@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:genshin_app/core/shared/constants/fonts.dart';
 import 'package:genshin_app/features/characters/domain/entities/character_detail_entity.dart';
+import 'package:genshin_app/features/characters/presentation/widgets/best_artifact.dart';
 import 'package:genshin_app/features/characters/presentation/widgets/best_team.dart';
+import 'package:genshin_app/features/characters/presentation/widgets/best_weapon.dart';
+import 'package:genshin_app/features/characters/presentation/widgets/constellations_card.dart';
 import 'package:genshin_app/features/characters/presentation/widgets/title_desc.dart';
+import 'package:timelines/timelines.dart';
 
 class InformationContent extends StatelessWidget {
   const InformationContent({
@@ -17,6 +21,8 @@ class InformationContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final carouselIndicator = ValueNotifier<int>(0);
+    final skillIndex = ValueNotifier<int>(0);
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -75,9 +81,9 @@ class InformationContent extends StatelessWidget {
               Row(
                 children: [
                   const SizedBox(width: 20),
-                  const TitleDescription(
-                    title: 'Birthday',
-                    description: '01/09',
+                  TitleDescription(
+                    title: 'Region',
+                    description: data.region,
                   ),
                   const SizedBox(width: 20),
                   TitleDescription(
@@ -113,6 +119,99 @@ class InformationContent extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Text(
+                'Upgrade Materials',
+                style: GenshinFonts.subTitleInter
+                    .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              Timeline.tileBuilder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                theme: TimelineTheme.of(context).copyWith(
+                  nodePosition: 0,
+                  connectorTheme:
+                      TimelineTheme.of(context).connectorTheme.copyWith(
+                            thickness: 1,
+                          ),
+                  indicatorTheme: const IndicatorThemeData(
+                    position: 0,
+                    size: 20,
+                  ),
+                ),
+                builder: TimelineTileBuilder.connected(
+                  indicatorBuilder: (_, index) => Indicator.outlined(),
+                  connectorBuilder: (_, index, connectorType) {
+                    return SolidLineConnector(
+                      indent: connectorType == ConnectorType.start ? 0 : 2.0,
+                      endIndent: connectorType == ConnectorType.end ? 0 : 2.0,
+                    );
+                  },
+                  contentsBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.only(bottom: 24, left: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          data.material[index].name,
+                          style: GenshinFonts.subTitleInter,
+                        ),
+                        const Gap(10),
+                        Row(
+                          children: [
+                            CachedNetworkImage(
+                              imageUrl: data.material[index].image,
+                              height: 40,
+                              width: 40,
+                            ),
+                            const Gap(10),
+                            Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(5),
+                                  color: Colors.white,
+                                  child: const Text('Total Need : 50'),
+                                ),
+                                const Gap(5),
+                                Container(
+                                  padding: const EdgeInsets.all(5),
+                                  color: Colors.white,
+                                  child: const Text('Total Need : 50'),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  itemCount: data.material.length,
+                ),
+              ),
+              // ListView.builder(
+              //   shrinkWrap: true,
+              //   physics: const NeverScrollableScrollPhysics(),
+              //   itemCount: data.material.length,
+              //   itemBuilder: (context, index) => Column(
+              //     children: [
+              //       Row(
+              //         children: [
+              //           CachedNetworkImage(
+              //             imageUrl: data.material[index].image,
+              //             height: 40,
+              //             width: 40,
+              //           ),
+              //           const Gap(10),
+              //           Text(
+              //             data.material[index].name,
+              //             style: GenshinFonts.subTitleInter,
+              //           ),
+              //         ],
+              //       ),
+              //       const Gap(10),
+              //     ],
+              //   ),
+              // ),
+              const SizedBox(height: 20),
+              Text(
                 'Best Team',
                 style: GenshinFonts.subTitleInter
                     .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
@@ -123,117 +222,14 @@ class InformationContent extends StatelessWidget {
                 style: GenshinFonts.subTitleInter
                     .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
               ),
-              SizedBox(
-                height: 100,
-                width: double.infinity,
-                child: OverflowBox(
-                  maxWidth: MediaQuery.of(context).size.width,
-                  child: Row(
-                    children: [
-                      Flexible(
-                        child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          itemCount: data.bestWeapon.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => Row(
-                            children: [
-                              const Gap(10),
-                              Container(
-                                color: Colors.transparent,
-                                height: 60,
-                                width: 60,
-                                child: Image.network(
-                                  data.bestWeapon[index].imageUrl,
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              BestWeaponWidget(data: data),
               const SizedBox(height: 20),
               Text(
                 'Best Artifact',
                 style: GenshinFonts.subTitleInter
                     .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
               ),
-              SizedBox(
-                height: 260,
-                width: double.infinity,
-                child: OverflowBox(
-                  maxWidth: MediaQuery.of(context).size.width,
-                  child: Column(
-                    children: [
-                      const Gap(10),
-                      Flexible(
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          padding: EdgeInsets.zero,
-                          itemCount: data.bestArtefact.length,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) => SizedBox(
-                            height: 50,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              itemCount:
-                                  data.bestArtefact[index].artifacts.length,
-                              itemBuilder: (context, indexAmout) => FittedBox(
-                                child: Row(
-                                  children: [
-                                    const Gap(10),
-                                    Stack(
-                                      children: [
-                                        Container(
-                                          color: Colors.transparent,
-                                          height: 60,
-                                          width: 60,
-                                          child: CachedNetworkImage(
-                                            imageUrl: data.bestArtefact[index]
-                                                .artifacts[indexAmout].imageUrl,
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                        Positioned(
-                                          bottom: 1,
-                                          right: 10,
-                                          child: CircleAvatar(
-                                            radius: 8,
-                                            backgroundColor: Colors.blue,
-                                            child: Text(
-                                              data.bestArtefact[index]
-                                                  .artifacts[0].amount,
-                                              style: GenshinFonts.subTitleInter,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Text(
-                                      data.bestArtefact[index]
-                                          .artifacts[indexAmout].name,
-                                      style:
-                                          GenshinFonts.subTitleInter.copyWith(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              BestArtifactWidget(data: data),
               const SizedBox(height: 20),
               Text(
                 'Stat Priority',
@@ -242,6 +238,7 @@ class InformationContent extends StatelessWidget {
               ),
               ListView.builder(
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: data.statPriority.length,
                 itemBuilder: (context, index) => Text(
                   data.statPriority[index],
@@ -278,6 +275,12 @@ class InformationContent extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
+              Text(
+                'Constellations',
+                style: GenshinFonts.subTitleInter
+                    .copyWith(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              ConstellationCard(skillIndex: skillIndex, data: data),
             ],
           ),
         ),

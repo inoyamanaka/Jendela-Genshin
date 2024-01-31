@@ -24,6 +24,16 @@ class _SchedulePageState extends State<SchedulePage> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = ScrollController();
+
+    void scrollDown() {
+      controller.animateTo(
+        controller.position.minScrollExtent,
+        duration: const Duration(seconds: 2),
+        curve: Curves.fastOutSlowIn,
+      );
+    }
+
     return BlocProvider(
       create: (context) => scheduleBloc,
       child: BlocBuilder<ScheduleBloc, ScheduleState>(
@@ -32,21 +42,66 @@ class _SchedulePageState extends State<SchedulePage> {
             final charSchedule = state.data.characterSchedule;
             return Scaffold(
               backgroundColor: GenshinColors.blackPrimary,
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerTop,
+              floatingActionButton: FloatingActionButton.small(
+                onPressed: scrollDown,
+                child: const Icon(Icons.arrow_upward),
+              ),
               body: SizedBox(
-                height: MediaQuery.sizeOf(context).height - 80,
+                height: MediaQuery.sizeOf(context).height - 50,
                 child: SingleChildScrollView(
                   child: Container(
                     height: (150 * charSchedule.length).toDouble(),
                     padding: const EdgeInsets.all(10),
                     child: Column(
                       children: [
-                        const Gap(100),
+                        const Gap(30),
+                        Text(
+                          'Today Schedule',
+                          style:
+                              GenshinFonts.subTitleInria.copyWith(fontSize: 16),
+                        ),
+                        const Gap(10),
+                        Container(
+                          height: 290,
+                          width: double.infinity,
+                          color: Colors.amber,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 80,
+                                    height: 100,
+                                    margin: const EdgeInsets.all(10),
+                                    color: GenshinColors.blackPrimary,
+                                  ),
+                                  const Column(
+                                    children: [
+                                      Text('Material Name'),
+                                      Text('Material Name'),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Container(
+                                width: 80,
+                                height: 100,
+                                margin: const EdgeInsets.all(10),
+                                color: GenshinColors.blackPrimary,
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Gap(10),
                         Text(
                           'Character Talents Materials',
                           style:
                               GenshinFonts.subTitleInria.copyWith(fontSize: 16),
                         ),
-                        const Gap(20),
+                        // const Gap(20),
                         Flexible(
                           child: ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),

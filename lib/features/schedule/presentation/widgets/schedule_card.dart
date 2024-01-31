@@ -20,7 +20,7 @@ class ScheduleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Gap(20),
+        const Gap(10),
         Container(
           decoration: const BoxDecoration(
             color: GenshinColors.greyPrimary,

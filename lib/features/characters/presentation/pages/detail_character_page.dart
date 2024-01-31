@@ -34,9 +34,23 @@ class _DetailCharacterPageState extends State<DetailCharacterPage> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = ScrollController();
+
+    void scrollDown() {
+      controller.animateTo(
+        controller.position.minScrollExtent,
+        duration: const Duration(seconds: 2),
+        curve: Curves.fastOutSlowIn,
+      );
+    }
+
     return BlocProvider(
       create: (context) => characterDetailBloc,
       child: Scaffold(
+        floatingActionButton: FloatingActionButton.small(
+          onPressed: scrollDown,
+          child: const Icon(Icons.arrow_upward),
+        ),
         body: BlocBuilder<CharacterDetailBloc, CharacterDetailState>(
           builder: (context, state) {
             if (state is CharacterDetailLoading) {
@@ -63,6 +77,7 @@ class _DetailCharacterPageState extends State<DetailCharacterPage> {
             if (state is CharacterDetailSuccess) {
               return Scaffold(
                 body: NestedScrollView(
+                  controller: controller,
                   headerSliverBuilder: (context, innerBoxIsScrolled) => [
                     SliverLayoutBuilder(
                       builder: (context, constraints) {
@@ -83,39 +98,43 @@ class _DetailCharacterPageState extends State<DetailCharacterPage> {
                       },
                     ),
                   ],
-                  body: SingleChildScrollView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    child: SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 3,
+                  body: SizedBox(
+                    child: SingleChildScrollView(
+                      physics: const NeverScrollableScrollPhysics(),
                       child: SizedBox(
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                      height: MediaQuery.sizeOf(context).height,
-                                      decoration: const BoxDecoration(
-                                        color: GenshinColors.blackPrimary,
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(20),
-                                          topRight: Radius.circular(20),
+                        height: MediaQuery.sizeOf(context).height * 4.3,
+                        child: SizedBox(
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        height:
+                                            MediaQuery.sizeOf(context).height,
+                                        decoration: const BoxDecoration(
+                                          color: GenshinColors.blackPrimary,
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            topRight: Radius.circular(20),
+                                          ),
                                         ),
-                                      ),
-                                      child: SingleChildScrollView(
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        child: InformationContent(
-                                          data: state.data,
+                                        child: SingleChildScrollView(
+                                          // controller: controller,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          child: InformationContent(
+                                            data: state.data,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

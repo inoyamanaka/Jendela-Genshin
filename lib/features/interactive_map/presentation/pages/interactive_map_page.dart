@@ -14,8 +14,6 @@ class _InteractiveMapPageState extends State<InteractiveMapPage> {
   @override
   void initState() {
     super.initState();
-    // controller = WebViewController()
-
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))

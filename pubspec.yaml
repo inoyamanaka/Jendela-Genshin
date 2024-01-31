@@ -31,6 +31,7 @@ dependencies:
   json_annotation: ^4.8.1
   remixicon: ^1.0.0
   salomon_bottom_bar: ^3.3.2
+  timelines: ^0.1.0
   webview_flutter: ^4.4.2
 
 dev_dependencies:
