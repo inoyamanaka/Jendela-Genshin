@@ -7,7 +7,8 @@ part of 'get_detail_character_body.dart';
 // **************************************************************************
 
 Map<String, dynamic> _$CharacterDetailBodyToJson(
-        CharacterDetailBody instance) =>
+  CharacterDetailBody instance,
+) =>
     <String, dynamic>{
       'stringify': instance.stringify,
       'hash_code': instance.hashCode,
