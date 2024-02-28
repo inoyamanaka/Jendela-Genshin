@@ -76,12 +76,8 @@ jobs:
         echo "storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}" >> android/key.properties
         echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
 
-        echo "My secret value is $ANDROID_KEY_ALIAS"
-        echo "My secret value is $ANDROID_STORE_PASSWORD"
-        echo "My secret value is $ANDROID_KEY_PASSWORD"
-
     - name: Build release app bundle
-      run: flutter build appbundle --flavor development --target lib/main_development.dart
+      run:  shorebird release android --artifact apk --flavor development --target lib/main_development.dart
 
     - name: Sign App Bundle
       uses: r0adkll/sign-android-release@v1   
@@ -141,16 +137,3 @@ jobs:
         ANDROID_STORE_PASSWORD: ${{secrets.ANDROID_STORE_PASSWORD}}
         ANDROID_SIGNING_KEY: ${{ steps.android_keystore.outputs.filePath }}
         PRIVATE_SERVICE_ACCOUNT_KEY : ${{ steps.service_account_json_file.outputs.filePath }}
-
-   
-  
-    
-    # Check for any formatting issues in the code.
-    # - run: flutter format --set-exit-if-changed .
-    
-    # Statically analyze the Dart code for any errors.
-    # - run: flutter analyze .
-    
-    # Run widget tests for our flutter project.
-    # - run: flutter test
-  

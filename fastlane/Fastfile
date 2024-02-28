@@ -4,7 +4,7 @@ lane :deploy do |options|
    flutter_build
    gradle(
             task: "bundle", 
-            flavor: "development", # Flavor Name
+            flavor: "development",
             build_type: "Release",
             project_dir: "android",
             flags: "-Ptarget=lib/main_development.dart",
