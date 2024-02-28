@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:genshin_app/features/navigation/presentation/navigation_page.dart';
-import 'package:genshin_app/l10n/l10n.dart';
 import 'package:get/get.dart';
 
 class App extends StatelessWidget {
@@ -16,8 +15,8 @@ class App extends StatelessWidget {
           accentColor: const Color(0xFF13B9FF),
         ),
       ),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
+      // localizationsDelegates: AppLocalizations.localizationsDelegates,
+      // supportedLocales: AppLocalizations.supportedLocales,
       home: const NavigationPage(),
     );
   }

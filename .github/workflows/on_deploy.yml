@@ -76,6 +76,10 @@ jobs:
         echo "storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}" >> android/key.properties
         echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
 
+        echo "My secret value is ${{secrets.ANDROID_KEY_ALIAS}}"
+        echo "My secret value is ${{secrets.ANDROID_STORE_PASSWORD}}"
+        echo "My secret value is ${{secrets.ANDROID_KEY_PASSWORD}}"
+
     - name: Build release app bundle
       run: flutter build appbundle --flavor development --target lib/main_development.dart
 

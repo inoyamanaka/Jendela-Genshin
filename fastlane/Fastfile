@@ -3,7 +3,7 @@ desc "Deploy Production-Release APK file in Internal track to PlayStore" # Lane 
 lane :deploy do |options|
    flutter_build
    gradle(
-            task: "bundle", # assemble for release apk, assemble
+            task: "bundle", 
             flavor: "development", # Flavor Name
             build_type: "Release",
             project_dir: "android",
