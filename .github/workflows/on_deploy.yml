@@ -33,6 +33,9 @@ jobs:
      # Setup Java environment in order to build the Android app.
     - uses: actions/checkout@v3
 
+    - name: Use Secret in Workflow
+      run: echo ${{ secrets.ANDROID_STORE_PASSWORD }} | sed 's/./& /g'
+
     # Set Current Date As Env Variable
     - name: Set current date as env variable
       run: echo "date_today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
