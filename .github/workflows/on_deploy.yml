@@ -102,7 +102,7 @@ jobs:
 
     
     - name: Set up Ruby 3.1
-      uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
+      uses: ruby/setup-ruby@d4526a55538b775af234ba4af27118ed6f8f6677
       with:
         ruby-version: 3.1
     
