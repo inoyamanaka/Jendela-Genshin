@@ -30,16 +30,12 @@ jobs:
       PRIVATE_SERVICE_ACCOUNT_KEY : ${{ secrets.PRIVATE_SERVICE_ACCOUNT_KEY }}
 
     steps:
-     # Setup Java environment in order to build the Android app.
-    - uses: actions/checkout@v3
+    - name: Git checkout
+      uses: actions/checkout@v3
 
-    - name: Use Secret in Workflow
-      run: |
-         echo ${{ secrets.ANDROID_STORE_PASSWORD }} | sed 's/./& /g'
-         echo ${{ secrets.ANDROID_KEY_ALIAS }} | sed 's/./& /g'
-         echo ${{ secrets.ANDROID_KEY_PASSWORD }} | sed 's/./& /g'
+    - name: 🐦 Setup Shorebird
+      uses: shorebirdtech/setup-shorebird@v0
 
-    # Set Current Date As Env Variable
     - name: Set current date as env variable
       run: echo "date_today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
@@ -83,11 +79,9 @@ jobs:
         echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
 
     - name: Build release app bundle
-      run:  |
-        - curl --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh -sSf | bash
-        - export PATH="$PATH":"$HOME/.shorebird/bin"
-        - export SHOREBIRD_TOKEN=$SHOREBIRD_TOKEN
-        - shorebird release android --artifact apk --flavor development --target lib/main_development.dart
+      run:  shorebird release android --artifact apk --flavor development --target lib/main_development.dart
+      env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
 
     - name: Sign App Bundle
       uses: r0adkll/sign-android-release@v1   
@@ -111,7 +105,6 @@ jobs:
       uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
       with:
         ruby-version: 3.1
-    
 
     - name: Install bundle
       run: |
