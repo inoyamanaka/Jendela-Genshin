@@ -68,7 +68,7 @@ jobs:
       run: flutter pub get
 
     - name: Decode Keystore File
-      run: echo "${{ secrets.ANDROID_SIGNIN_KEY }}" | base64 --decode > android/key.jks
+      run: echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > android/key.jks
 
     - name: Create key.properties
       run: |
