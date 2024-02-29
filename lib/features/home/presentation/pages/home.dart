@@ -4,7 +4,7 @@ import 'package:genshin_app/core/shared/constants/colors.dart';
 import 'package:genshin_app/features/characters/presentation/pages/characters_page.dart';
 import 'package:genshin_app/features/events/presentation/pages/event_page.dart';
 import 'package:genshin_app/features/home/presentation/widgets/content_widget.dart';
-import 'package:genshin_app/features/interactive_map/presentation/pages/interactive_map_page.dart';
+import 'package:genshin_app/features/navigation/presentation/coming_soon.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (context) => const InteractiveMapPage(),
+                        builder: (context) => const ComingSoon(),
                       ),
                     );
                   },
@@ -100,7 +100,7 @@ class HomePage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (context) => const InteractiveMapPage(),
+                        builder: (context) => const ComingSoon(),
                       ),
                     );
                   },

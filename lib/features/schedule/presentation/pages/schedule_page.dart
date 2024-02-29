@@ -63,38 +63,38 @@ class _SchedulePageState extends State<SchedulePage> {
                               GenshinFonts.subTitleInria.copyWith(fontSize: 16),
                         ),
                         const Gap(10),
-                        Container(
-                          height: 290,
-                          width: double.infinity,
-                          color: Colors.amber,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 80,
-                                    height: 100,
-                                    margin: const EdgeInsets.all(10),
-                                    color: GenshinColors.blackPrimary,
-                                  ),
-                                  const Column(
-                                    children: [
-                                      Text('Material Name'),
-                                      Text('Material Name'),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Container(
-                                width: 80,
-                                height: 100,
-                                margin: const EdgeInsets.all(10),
-                                color: GenshinColors.blackPrimary,
-                              ),
-                            ],
-                          ),
-                        ),
+                        // Container(
+                        //   height: 290,
+                        //   width: double.infinity,
+                        //   color: Colors.amber,
+                        //   child: Column(
+                        //     crossAxisAlignment: CrossAxisAlignment.start,
+                        //     children: [
+                        //       Row(
+                        //         children: [
+                        //           Container(
+                        //             width: 80,
+                        //             height: 100,
+                        //             margin: const EdgeInsets.all(10),
+                        //             color: GenshinColors.blackPrimary,
+                        //           ),
+                        //           const Column(
+                        //             children: [
+                        //               Text('Material Name'),
+                        //               Text('Material Name'),
+                        //             ],
+                        //           ),
+                        //         ],
+                        //       ),
+                        //       Container(
+                        //         width: 80,
+                        //         height: 100,
+                        //         margin: const EdgeInsets.all(10),
+                        //         color: GenshinColors.blackPrimary,
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                         const Gap(10),
                         Text(
                           'Character Talents Materials',

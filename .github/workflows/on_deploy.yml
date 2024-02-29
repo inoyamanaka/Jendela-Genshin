@@ -83,7 +83,11 @@ jobs:
         echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
 
     - name: Build release app bundle
-      run:  shorebird release android --artifact apk --flavor development --target lib/main_development.dart
+      run:  |
+        - curl --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh -sSf | bash
+        - export PATH="$PATH":"$HOME/.shorebird/bin"
+        - export SHOREBIRD_TOKEN=$SHOREBIRD_TOKEN
+        - shorebird release android --artifact apk --flavor development --target lib/main_development.dart
 
     - name: Sign App Bundle
       uses: r0adkll/sign-android-release@v1   
