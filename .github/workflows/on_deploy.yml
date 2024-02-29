@@ -96,4 +96,4 @@ jobs:
       #   ANDROID_KEY_PASSWORD: ${{secrets.ANDROID_KEY_PASSWORD}}
       #   ANDROID_STORE_PASSWORD: ${{secrets.ANDROID_STORE_PASSWORD}}
       #   ANDROID_SIGNING_KEY: ${{ steps.android_keystore.outputs.filePath }}
-      #   PRIVATE_SERVICE_ACCOUNT_KEY : ${{ steps.service_account_json_file.outputs.filePath }}
+      #   PRIVATE_SERVICE_ACCOUNT_KEY : ${{ steps.service_account_json_file.outputs.filePath }
