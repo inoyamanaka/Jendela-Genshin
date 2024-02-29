@@ -82,19 +82,14 @@ jobs:
       with:
           name: Jendela Genshin
           path: build/app/outputs/bundle/developmentRelease/
-          
-    - name: Create Firebase Service Credentials file
-      run: |
-          echo "$PRIVATE_SERVICE_ACCOUNT_KEY" > firebase_credentials.json.b64
-          base64 -d -i firebase_credentials.json.b64 > firebase_credentials.json
-      env:
-          PRIVATE_SERVICE_ACCOUNT_KEY: ${{ secrets.PRIVATE_SERVICE_ACCOUNT_KEY }}
 
     - name: Install Firebase app distribution plugin
       run: sudo fastlane add_plugin firebase_app_distribution
 
     - name: Distribute app with 🔥 App Distribution 🚀
-      run: bundle exec fastlane deploy
+      run: |
+        cd ./fastlane
+        bundle exec fastlane deploy
       # env:
       #   FIREBASE_CLI_TOKEN: ${{secrets.FIREBASE_CLI_TOKEN}}
       #   FIREBASE_APP_ID: ${{secrets.FIREBASE_APP_ID}}

@@ -13,10 +13,10 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
-### deploy_development_release
+### deploy
 
 ```sh
-[bundle exec] fastlane deploy_development_release
+[bundle exec] fastlane deploy
 ```
 
 Deploy Production-Release APK file in Internal track to PlayStore
