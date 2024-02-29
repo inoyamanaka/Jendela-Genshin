@@ -70,7 +70,6 @@ jobs:
     - name: Decode Keystore File
       run: echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > android/key.jks
 
- 
     - name: Build release app bundle
       run: |
         export SHOREBIRD_TOKEN="$SHOREBIRD_TOKEN"
