@@ -63,32 +63,31 @@ jobs:
       with:
         channel: 'beta'
     
-    # Get flutter dependencies.
-    - name: Install Package
-      run: flutter pub get
+    # # Get flutter dependencies.
+    # - name: Install Package
+    #   run: flutter pub get
 
-    - name: Decode Keystore File
-      run: echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > android/key.jks
+    # - name: Decode Keystore File
+    #   run: echo "${{ secrets.ANDROID_SIGNING_KEY }}" | base64 --decode > android/key.jks
 
-    - name: Build release app bundle
-      run: |
-        export SHOREBIRD_TOKEN="$SHOREBIRD_TOKEN"
-        shorebird release android --artifact apk --flavor development --target lib/main_development.dart
-      env:
-          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+    # - name: Build release app bundle
+    #   run: |
+    #     export SHOREBIRD_TOKEN="$SHOREBIRD_TOKEN"
+    #     shorebird release android --artifact apk --flavor development --target lib/main_development.dart
+    #   env:
+    #       SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
 
-    - name: Upload APP BUNDLE
-      uses: actions/upload-artifact@v3.1.2
-      with:
-          name: Jendela Genshin
-          path: build/app/outputs/bundle/developmentRelease/
+    # - name: Upload APP BUNDLE
+    #   uses: actions/upload-artifact@v3.1.2
+    #   with:
+    #       name: Jendela Genshin
+    #       path: build/app/outputs/bundle/developmentRelease/
 
-    - name: Install Firebase app distribution plugin
-      run: sudo fastlane add_plugin firebase_app_distribution
+    # - name: Install Firebase app distribution plugin
+    #   run: sudo fastlane add_plugin firebase_app_distribution
 
     - name: Distribute app with 🔥 App Distribution 🚀
       run: |
-        cd ./fastlane
         bundle exec fastlane deploy
       # env:
       #   FIREBASE_CLI_TOKEN: ${{secrets.FIREBASE_CLI_TOKEN}}

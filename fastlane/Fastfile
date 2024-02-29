@@ -1,6 +1,6 @@
 # Lane to Deploy Production-Release Bundle file in Internal track
 desc "Deploy Production-Release APK file in Internal track to PlayStore" 
-lane :deploy do
+lane :deploy do 
   supply(
       json_key_data: ENV['JSON_KEY_DATA'],
       track: 'internal',
