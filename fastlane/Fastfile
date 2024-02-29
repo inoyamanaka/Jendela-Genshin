@@ -1,24 +1,12 @@
 # Lane to Deploy Production-Release Bundle file in Internal track
-desc "Deploy Production-Release APK file in Internal track to PlayStore" # Lane description
+desc "Deploy Production-Release APK file in Internal track to PlayStore" 
 lane :deploy do |options|
-   flutter_build
-   gradle(
-            task: "bundle", 
-            flavor: "development",
-            build_type: "Release",
-            project_dir: "android",
-            flags: "-Ptarget=lib/main_development.dart",
-            properties: {
-                "android.injected.signing.store.file" => ENV["ANDROID_SIGNING_KEY"],
-                "android.injected.signing.store.password" => ENV["ANDROID_STORE_PASSWORD"],
-                "android.injected.signing.key.alias" =>  ENV["ANDROID_KEY_ALIAS"],
-                "android.injected.signing.key.password" =>  ENV["ANDROID_KEY_PASSWORD"],
-            }
-  )
   supply(
+      json_key_data: ENV['JSON_KEY_DATA'],
+      track: 'internal',
       skip_upload_images: 'false',
       skip_upload_screenshots: 'false',
-      track:'internal', 
+      version_code: "#{flutter_version()["version_code"]}",
       package_name: 'com.deploy.verygoodcore.genshin_app.dev',
       aab_paths: ["build/app/outputs/bundle/developmentRelease/app-development-release.aab"]
   )
