@@ -68,11 +68,7 @@ jobs:
       run: flutter pub get
 
     - name: Decode Keystore File
-      uses: timheuer/base64-to-file@v1
-      id: key
-      with:
-        fileName: "key.keystore"
-        encodedString: ${{ secrets.ANDROID_SIGNING_KEY }}
+      run: echo "$STORE_FILE" | base64 --decode > android/key.jks
 
     - name: Create key.properties
       run: |
