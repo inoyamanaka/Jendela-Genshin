@@ -94,13 +94,6 @@ jobs:
     - name: Install Firebase app distribution plugin
       run: sudo fastlane add_plugin firebase_app_distribution
 
-    - name: Decode Service Account Key JSON File
-      uses: timheuer/base64-to-file@v1
-      id: service_account_json_file
-      with:
-        fileName: "serviceAccount.json"
-        encodedString: ${{ secrets.PRIVATE_SERVICE_ACCOUNT_KEY }}
-
     - name: Distribute app with 🔥 App Distribution 🚀
       run: bundle exec fastlane deploy
       # env:
