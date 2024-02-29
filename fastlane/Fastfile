@@ -4,9 +4,8 @@ lane :deploy do |options|
   supply(
       json_key_data: ENV['JSON_KEY_DATA'],
       track: 'internal',
-      skip_upload_images: 'false',
-      skip_upload_screenshots: 'false',
-      version_code: "#{flutter_version()["version_code"]}",
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
       package_name: 'com.deploy.verygoodcore.genshin_app.dev',
       aab_paths: ["build/app/outputs/bundle/developmentRelease/app-development-release.aab"]
   )
