@@ -66,9 +66,9 @@ android {
          if (System.getenv("CI")) {
             release {
                 storeFile file("../key.jks")
-                storePassword "${System.getenv('STORE_PASSWORD')}"
-                keyAlias "${System.getenv('KEY_ALIAS')}"
-                keyPassword "${System.getenv('KEY_PASSWORD')}"
+                storePassword "${System.getenv('ANDROID_STORE_PASSWORD')}"
+                keyAlias "${System.getenv('ANDROID_KEY_ALIAS')}"
+                keyPassword "${System.getenv('ANDROID_KEY_PASSWORD')}"
             }
         }else{
             release {
