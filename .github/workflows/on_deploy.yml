@@ -61,7 +61,7 @@ jobs:
     # Setup the flutter environment.
     - uses: subosito/flutter-action@v1
       with:
-        channel: 'beta' # 'dev', 'alpha', default to: 'stable'
+        channel: 'beta'
     
     # Get flutter dependencies.
     - name: Install Package
