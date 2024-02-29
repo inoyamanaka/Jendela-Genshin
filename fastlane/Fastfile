@@ -2,7 +2,6 @@
 desc "Deploy Production-Release APK file in Internal track to PlayStore" 
 lane :deploy do 
   supply(
-      json_key_data: "${{ secrets.JSON_KEY_DATA }}",
       track: 'internal',
       skip_upload_images: true,
       skip_upload_screenshots: true,
